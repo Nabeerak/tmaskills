@@ -1,0 +1,51 @@
+{
+  "name": "Warm/Friendly",
+  "description": "Warm colors, rounded corners, inviting feel, approachable typography",
+  "useCase": ["Community platforms", "Education", "Wellness", "Lifestyle brands", "Non-profits"],
+  "colors": {
+    "primary": "25 95% 53%",
+    "primaryDark": "25 95% 43%",
+    "primaryLight": "25 95% 63%",
+    "secondary": "340 75% 55%",
+    "accent": "45 100% 50%",
+    "background": "35 100% 98%",
+    "surface": "30 50% 96%",
+    "text": "20 20% 20%",
+    "textMuted": "20 10% 50%"
+  },
+  "typography": {
+    "display": {
+      "family": "'Nunito', 'Quicksand', sans-serif",
+      "weights": [400, 600, 700, 800],
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+    },
+    "text": {
+      "family": "'Inter', 'Open Sans', sans-serif",
+      "weights": [400, 500],
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+    }
+  },
+  "borderRadius": {
+    "sm": "0.5rem",
+    "md": "0.75rem",
+    "lg": "1rem",
+    "xl": "1.5rem"
+  },
+  "shadows": {
+    "sm": "0 2px 8px 0 rgb(0 0 0 / 0.06)",
+    "md": "0 4px 16px 0 rgb(0 0 0 / 0.08)",
+    "lg": "0 8px 24px 0 rgb(0 0 0 / 0.1)"
+  },
+  "spacing": {
+    "scale": "comfortable",
+    "sectionPadding": "py-24",
+    "componentGap": "gap-8"
+  },
+  "characteristics": [
+    "Warm, inviting color palette",
+    "Rounded corners and soft edges",
+    "Friendly and approachable typography",
+    "Organic shapes and patterns",
+    "Creates sense of community and warmth"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "Creative/Bold",
+  "description": "Vibrant colors, experimental layouts, unique typography, high energy",
+  "useCase": ["Creative agencies", "Art galleries", "Entertainment", "Events", "Fashion brands"],
+  "colors": {
+    "primary": "280 100% 50%",
+    "primaryDark": "280 100% 40%",
+    "primaryLight": "280 100% 60%",
+    "secondary": "340 100% 60%",
+    "accent": "45 100% 50%",
+    "background": "0 0% 100%",
+    "surface": "0 0% 98%",
+    "text": "0 0% 10%",
+    "textMuted": "0 0% 45%"
+  },
+  "typography": {
+    "display": {
+      "family": "'Space Grotesk', 'Poppins', sans-serif",
+      "weights": [400, 500, 600, 700, 800],
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    },
+    "text": {
+      "family": "'Inter', 'Work Sans', sans-serif",
+      "weights": [400, 500],
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+    }
+  },
+  "borderRadius": {
+    "sm": "0.5rem",
+    "md": "1rem",
+    "lg": "1.5rem",
+    "xl": "2rem"
+  },
+  "shadows": {
+    "sm": "0 4px 6px 0 rgb(0 0 0 / 0.1)",
+    "md": "0 8px 16px 0 rgb(0 0 0 / 0.15)",
+    "lg": "0 16px 32px 0 rgb(0 0 0 / 0.2)"
+  },
+  "spacing": {
+    "scale": "varied",
+    "sectionPadding": "py-24",
+    "componentGap": "gap-10"
+  },
+  "characteristics": [
+    "Vibrant, saturated color palette",
+    "Experimental and asymmetrical layouts",
+    "Large, bold typography",
+    "Unexpected animations and interactions",
+    "High energy and visual interest"
+  ]
+}

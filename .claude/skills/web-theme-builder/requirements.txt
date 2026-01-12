@@ -1,0 +1,18 @@
+# Web Theme Builder - Python Dependencies
+#
+# This skill uses only Python standard library modules (argparse, json, pathlib, re, sys, typing).
+# No external packages are required to run the scripts.
+#
+# Python version: 3.7 or higher
+#
+# Optional dependencies for testing/validation:
+# - Node.js 14+ (for Lighthouse, HTML validator)
+# - Modern web browser (Chrome, Firefox, Safari)
+#
+# To verify your Python installation:
+#   python3 --version
+#
+# To test scripts work correctly:
+#   python3 scripts/theme_generator.py --help
+#   python3 scripts/component_builder.py --help
+#   python3 scripts/palette_generator.py --help

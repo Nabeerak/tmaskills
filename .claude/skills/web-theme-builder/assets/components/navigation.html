@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation Components</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+  <!-- Header Navigation -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href="/" class="text-2xl font-bold text-blue-600">Brand</a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Home</a>
+          <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Features</a>
+          <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Pricing</a>
+          <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">About</a>
+          <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="hidden md:flex items-center space-x-4">
+          <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Sign In</a>
+          <a href="#" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+            Get Started
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden border-t border-gray-200">
+      <nav class="px-4 py-4 space-y-2">
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Home</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Features</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Pricing</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">About</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Contact</a>
+        <div class="pt-4 space-y-2">
+          <a href="#" class="block px-4 py-2 text-center border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-all">
+            Sign In
+          </a>
+          <a href="#" class="block px-4 py-2 text-center bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+            Get Started
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto p-8 space-y-12">
+    <h1 class="text-4xl font-bold">Navigation Components</h1>
+
+    <!-- Sidebar Navigation -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Sidebar Navigation</h2>
+      <div class="flex bg-white rounded-xl shadow-sm overflow-hidden" style="height: 500px;">
+        <aside class="w-64 bg-white border-r border-gray-200">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-blue-600 mb-8">Dashboard</h2>
+            <nav class="space-y-2">
+              <a href="#" class="flex items-center gap-3 px-4 py-3 bg-blue-50 text-blue-600 rounded-lg font-medium">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                </svg>
+                Home
+              </a>
+              <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                </svg>
+                Analytics
+              </a>
+              <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                  <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                </svg>
+                Projects
+              </a>
+              <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                </svg>
+                Settings
+              </a>
+            </nav>
+          </div>
+        </aside>
+        <main class="flex-1 p-8 bg-gray-50">
+          <p class="text-gray-600">Main content area</p>
+        </main>
+      </div>
+    </section>
+
+    <!-- Breadcrumbs -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Breadcrumbs</h2>
+      <div class="bg-white rounded-xl p-8 shadow-sm">
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol class="flex items-center space-x-2">
+            <li>
+              <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Home</a>
+            </li>
+            <li>
+              <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+              </svg>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Products</a>
+            </li>
+            <li>
+              <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+              </svg>
+            </li>
+            <li>
+              <span class="text-gray-900 font-medium" aria-current="page">Product Details</span>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Tabs</h2>
+      <div class="bg-white rounded-xl p-8 shadow-sm">
+        <div class="border-b border-gray-200">
+          <nav class="flex space-x-8" aria-label="Tabs">
+            <a href="#" class="border-b-2 border-blue-600 text-blue-600 py-4 px-1 font-medium">
+              Overview
+            </a>
+            <a href="#" class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-4 px-1 font-medium transition-colors">
+              Features
+            </a>
+            <a href="#" class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-4 px-1 font-medium transition-colors">
+              Pricing
+            </a>
+            <a href="#" class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-4 px-1 font-medium transition-colors">
+              Support
+            </a>
+          </nav>
+        </div>
+        <div class="py-6">
+          <p class="text-gray-600">Tab content goes here</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

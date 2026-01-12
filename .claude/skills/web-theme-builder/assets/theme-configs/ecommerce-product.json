@@ -1,0 +1,55 @@
+{
+  "name": "E-commerce/Product",
+  "description": "Product-focused layouts, clear CTAs, conversion-optimized, trust signals",
+  "useCase": ["Online stores", "Product showcases", "Retail websites", "Marketplace platforms"],
+  "colors": {
+    "primary": "142 71% 45%",
+    "primaryDark": "142 71% 35%",
+    "primaryLight": "142 71% 55%",
+    "secondary": "210 90% 56%",
+    "accent": "0 100% 60%",
+    "background": "0 0% 100%",
+    "surface": "0 0% 97%",
+    "text": "0 0% 10%",
+    "textMuted": "0 0% 45%",
+    "success": "142 71% 45%",
+    "warning": "38 92% 50%",
+    "error": "0 84% 60%",
+    "sale": "0 100% 60%"
+  },
+  "typography": {
+    "display": {
+      "family": "'Inter', 'Roboto', sans-serif",
+      "weights": [400, 500, 600, 700],
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    },
+    "text": {
+      "family": "'Inter', system-ui, sans-serif",
+      "weights": [400, 500],
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+    }
+  },
+  "borderRadius": {
+    "sm": "0.25rem",
+    "md": "0.5rem",
+    "lg": "0.75rem",
+    "xl": "1rem"
+  },
+  "shadows": {
+    "sm": "0 1px 3px 0 rgb(0 0 0 / 0.1)",
+    "md": "0 4px 8px 0 rgb(0 0 0 / 0.1)",
+    "lg": "0 8px 16px 0 rgb(0 0 0 / 0.12)"
+  },
+  "spacing": {
+    "scale": "moderate",
+    "sectionPadding": "py-16",
+    "componentGap": "gap-6"
+  },
+  "characteristics": [
+    "Product-focused with large images",
+    "Clear pricing and CTAs",
+    "Trust signals (reviews, badges)",
+    "Conversion-optimized layouts",
+    "Prominent shopping cart"
+  ]
+}

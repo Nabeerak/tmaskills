@@ -1,0 +1,139 @@
+{
+  "pairings": [
+    {
+      "name": "Modern Minimalist",
+      "displayFont": {
+        "family": "Inter",
+        "weights": [300, 400, 600, 700],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap",
+        "fallback": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      },
+      "textFont": {
+        "family": "Inter",
+        "weights": [400, 500],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap",
+        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif"
+      },
+      "characteristics": "Clean, modern, versatile",
+      "themes": ["modern", "saas", "corporate"]
+    },
+    {
+      "name": "Corporate Professional",
+      "displayFont": {
+        "family": "Roboto",
+        "weights": [400, 500, 700],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap",
+        "fallback": "system-ui, sans-serif"
+      },
+      "textFont": {
+        "family": "Open Sans",
+        "weights": [400, 600],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap",
+        "fallback": "system-ui, sans-serif"
+      },
+      "characteristics": "Professional, readable, trustworthy",
+      "themes": ["corporate", "saas"]
+    },
+    {
+      "name": "Creative Bold",
+      "displayFont": {
+        "family": "Space Grotesk",
+        "weights": [400, 500, 600, 700],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap",
+        "fallback": "'Arial Black', sans-serif"
+      },
+      "textFont": {
+        "family": "Work Sans",
+        "weights": [400, 500],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap",
+        "fallback": "system-ui, sans-serif"
+      },
+      "characteristics": "Distinctive, bold, modern",
+      "themes": ["creative"]
+    },
+    {
+      "name": "Tech Monospace",
+      "displayFont": {
+        "family": "JetBrains Mono",
+        "weights": [400, 500, 600, 700],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap",
+        "fallback": "'Courier New', monospace"
+      },
+      "textFont": {
+        "family": "Inter",
+        "weights": [400, 500],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap",
+        "fallback": "system-ui, sans-serif"
+      },
+      "characteristics": "Technical, developer-focused, precise",
+      "themes": ["dark"]
+    },
+    {
+      "name": "Warm Friendly",
+      "displayFont": {
+        "family": "Nunito",
+        "weights": [400, 600, 700, 800],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap",
+        "fallback": "system-ui, sans-serif"
+      },
+      "textFont": {
+        "family": "Lato",
+        "weights": [400, 700],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap",
+        "fallback": "system-ui, sans-serif"
+      },
+      "characteristics": "Rounded, approachable, friendly",
+      "themes": ["warm"]
+    },
+    {
+      "name": "Elegant Serif",
+      "displayFont": {
+        "family": "Playfair Display",
+        "weights": [400, 600, 700, 900],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&display=swap",
+        "fallback": "Georgia, serif"
+      },
+      "textFont": {
+        "family": "Inter",
+        "weights": [400, 500],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap",
+        "fallback": "system-ui, sans-serif"
+      },
+      "characteristics": "Elegant, classic, refined",
+      "themes": ["portfolio"]
+    },
+    {
+      "name": "Geometric Modern",
+      "displayFont": {
+        "family": "Poppins",
+        "weights": [400, 500, 600, 700, 800],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap",
+        "fallback": "system-ui, sans-serif"
+      },
+      "textFont": {
+        "family": "Poppins",
+        "weights": [400, 500],
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap",
+        "fallback": "system-ui, sans-serif"
+      },
+      "characteristics": "Geometric, clean, contemporary",
+      "themes": ["modern", "creative", "ecommerce"]
+    }
+  ],
+  "guidelines": {
+    "displayFont": {
+      "purpose": "Headlines, subheadings, navigation, buttons",
+      "characteristics": "Carries personality and brand voice, distinctive, readable at large sizes"
+    },
+    "textFont": {
+      "purpose": "Body copy, captions, metadata",
+      "characteristics": "Maximum readability, neutral, optimized for extended reading"
+    },
+    "loadingOptimization": {
+      "fontDisplay": "swap",
+      "subsetRecommendation": "latin",
+      "preload": true,
+      "weightLimitation": "Only load weights you actually use"
+    }
+  }
+}

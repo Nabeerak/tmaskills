@@ -1,0 +1,92 @@
+# Coverage.py configuration file
+# https://coverage.readthedocs.io/en/latest/config.html
+
+[run]
+# Source code directory to measure
+source = myapp
+
+# Files/directories to omit from coverage
+omit =
+    */tests/*
+    */test_*.py
+    */__pycache__/*
+    */site-packages/*
+    */venv/*
+    */virtualenv/*
+    */.venv/*
+    */migrations/*
+    */alembic/*
+    setup.py
+    */conftest.py
+
+# Enable branch coverage (measures if/else branches)
+branch = True
+
+# Measure concurrency (for parallel/async code)
+concurrency = thread,multiprocessing
+
+# Use relative file paths
+relative_files = True
+
+[report]
+# Show lines that weren't executed
+show_missing = True
+
+# Number of decimal places in coverage percentage
+precision = 2
+
+# Skip covered files in report
+skip_covered = False
+
+# Skip empty files
+skip_empty = True
+
+# Lines to exclude from coverage consideration
+exclude_lines =
+    # Standard pragmas
+    pragma: no cover
+
+    # Don't complain about missing debug code
+    def __repr__
+    def __str__
+
+    # Don't complain if tests don't hit defensive assertion code
+    raise AssertionError
+    raise NotImplementedError
+
+    # Don't complain if non-runnable code isn't run
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    if typing.TYPE_CHECKING:
+
+    # Don't complain about abstract methods
+    @abstractmethod
+    @abc.abstractmethod
+
+    # Don't complain about ellipsis in Protocol/stub files
+    \.\.\.
+
+    # Don't complain about pass statements
+    pass
+
+# Partial branches to exclude
+partial_branches =
+    pragma: no branch
+
+[html]
+# Directory for HTML report
+directory = htmlcov
+
+# Title for HTML report
+title = Coverage Report
+
+[xml]
+# Output file for XML report (for CI/CD tools)
+output = coverage.xml
+
+[json]
+# Output file for JSON report
+output = coverage.json
+# Pretty print JSON
+pretty_print = True
+show_contexts = True

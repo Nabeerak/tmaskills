@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Components</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-8">
+  <div class="max-w-6xl mx-auto space-y-12">
+    <h1 class="text-4xl font-bold mb-8">Card Components</h1>
+
+    <!-- Basic Card -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Basic Card</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h3 class="text-xl font-semibold mb-2">Card Title</h3>
+          <p class="text-gray-600">This is a basic card component with title and description text.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2">Hover Effect</h3>
+          <p class="text-gray-600">This card has a hover effect that increases the shadow.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-6 border-2 border-blue-600">
+          <h3 class="text-xl font-semibold mb-2">With Border</h3>
+          <p class="text-gray-600">This card has a colored border for emphasis.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Cards -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Product Cards</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Product Name</h3>
+            <p class="text-gray-600 mb-4">Short product description goes here with key features.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl font-bold text-blue-600">$49.99</span>
+              <button class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Cards -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Blog Cards</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500"></div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+              <time datetime="2024-01-15">Jan 15, 2024</time>
+              <span>•</span>
+              <span>5 min read</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 hover:text-blue-600 transition-colors">
+              <a href="#">How to Build Better Web Themes</a>
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Learn the fundamentals of creating accessible, responsive, and beautiful web themes...
+            </p>
+            <a href="#" class="text-blue-600 font-semibold hover:underline">Read More →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Pricing Cards</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Basic Plan -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold mb-2">Basic</h3>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="text-5xl font-bold">$9</span>
+              <span class="text-gray-600">/month</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>5 projects</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Basic support</span>
+            </li>
+          </ul>
+          <button class="w-full px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-all">
+            Get Started
+          </button>
+        </div>
+
+        <!-- Pro Plan (Featured) -->
+        <div class="bg-blue-600 text-white rounded-xl shadow-xl p-8 border-4 border-blue-700 transform scale-105">
+          <div class="text-center mb-6">
+            <div class="inline-block px-3 py-1 bg-yellow-400 text-blue-900 text-xs font-bold rounded-full mb-2">
+              POPULAR
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Pro</h3>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="text-5xl font-bold">$29</span>
+              <span class="opacity-90">/month</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Unlimited projects</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Priority support</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Advanced analytics</span>
+            </li>
+          </ul>
+          <button class="w-full px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+            Get Started
+          </button>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="text-5xl font-bold">$99</span>
+              <span class="text-gray-600">/month</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Everything in Pro</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Dedicated support</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Custom integration</span>
+            </li>
+          </ul>
+          <button class="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+            Contact Sales
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature Cards -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Feature Cards</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-6 hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Fast Performance</h3>
+          <p class="text-gray-600">Lightning-fast load times for optimal user experience.</p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Secure</h3>
+          <p class="text-gray-600">Enterprise-grade security to protect your data.</p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Customizable</h3>
+          <p class="text-gray-600">Fully customizable to match your brand identity.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

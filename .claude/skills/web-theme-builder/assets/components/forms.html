@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Components</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-8">
+  <div class="max-w-4xl mx-auto space-y-12">
+    <h1 class="text-4xl font-bold mb-8">Form Components</h1>
+
+    <!-- Complete Contact Form -->
+    <section class="bg-white rounded-xl p-8 shadow-sm">
+      <h2 class="text-3xl font-bold mb-6">Contact Form</h2>
+      <form class="space-y-6">
+        <!-- Name Fields -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="first-name" class="block text-sm font-medium text-gray-700 mb-2">
+              First Name <span class="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="first-name"
+              name="first-name"
+              required
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+              placeholder="John"
+            >
+          </div>
+          <div>
+            <label for="last-name" class="block text-sm font-medium text-gray-700 mb-2">
+              Last Name <span class="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="last-name"
+              name="last-name"
+              required
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+              placeholder="Doe"
+            >
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+            Email Address <span class="text-red-600">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+            placeholder="you@example.com"
+          >
+        </div>
+
+        <!-- Phone -->
+        <div>
+          <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+            placeholder="+1 (555) 123-4567"
+          >
+        </div>
+
+        <!-- Subject (Select) -->
+        <div>
+          <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+            Subject <span class="text-red-600">*</span>
+          </label>
+          <select
+            id="subject"
+            name="subject"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+          >
+            <option value="">Select a subject</option>
+            <option value="general">General Inquiry</option>
+            <option value="support">Support</option>
+            <option value="sales">Sales</option>
+            <option value="feedback">Feedback</option>
+          </select>
+        </div>
+
+        <!-- Message (Textarea) -->
+        <div>
+          <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+            Message <span class="text-red-600">*</span>
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent resize-none"
+            placeholder="Enter your message here..."
+          ></textarea>
+          <p class="mt-2 text-sm text-gray-500">Maximum 500 characters</p>
+        </div>
+
+        <!-- Checkbox -->
+        <div class="flex items-start gap-2">
+          <input
+            type="checkbox"
+            id="newsletter"
+            name="newsletter"
+            class="w-4 h-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-600"
+          >
+          <label for="newsletter" class="text-sm text-gray-700">
+            Subscribe to our newsletter for updates and exclusive offers
+          </label>
+        </div>
+
+        <!-- Terms -->
+        <div class="flex items-start gap-2">
+          <input
+            type="checkbox"
+            id="terms"
+            name="terms"
+            required
+            class="w-4 h-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-600"
+          >
+          <label for="terms" class="text-sm text-gray-700">
+            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions</a> and
+            <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a> <span class="text-red-600">*</span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button
+            type="submit"
+            class="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 transition-colors"
+          >
+            Send Message
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Input Variations -->
+    <section class="bg-white rounded-xl p-8 shadow-sm">
+      <h2 class="text-2xl font-semibold mb-6">Input Variations</h2>
+      <div class="space-y-6">
+        <!-- Normal Input -->
+        <div>
+          <label for="normal" class="block text-sm font-medium text-gray-700 mb-2">Normal Input</label>
+          <input
+            type="text"
+            id="normal"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+          >
+        </div>
+
+        <!-- Input with Help Text -->
+        <div>
+          <label for="help" class="block text-sm font-medium text-gray-700 mb-2">With Help Text</label>
+          <input
+            type="password"
+            id="help"
+            aria-describedby="help-text"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+          >
+          <p id="help-text" class="mt-2 text-sm text-gray-500">Must be at least 8 characters with one uppercase letter</p>
+        </div>
+
+        <!-- Error State -->
+        <div>
+          <label for="error" class="block text-sm font-medium text-gray-700 mb-2">Error State</label>
+          <input
+            type="email"
+            id="error"
+            aria-invalid="true"
+            aria-describedby="error-message"
+            class="w-full px-4 py-2 border-2 border-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            value="invalid-email"
+          >
+          <p id="error-message" class="mt-2 text-sm text-red-600">Please enter a valid email address</p>
+        </div>
+
+        <!-- Success State -->
+        <div>
+          <label for="success" class="block text-sm font-medium text-gray-700 mb-2">Success State</label>
+          <input
+            type="text"
+            id="success"
+            class="w-full px-4 py-2 border-2 border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            value="Valid input"
+          >
+          <p class="mt-2 text-sm text-green-600 flex items-center gap-1">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            Looks good!
+          </p>
+        </div>
+
+        <!-- Disabled Input -->
+        <div>
+          <label for="disabled" class="block text-sm font-medium text-gray-700 mb-2">Disabled Input</label>
+          <input
+            type="text"
+            id="disabled"
+            disabled
+            value="Disabled field"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed opacity-60"
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Radio Buttons and Checkboxes -->
+    <section class="bg-white rounded-xl p-8 shadow-sm">
+      <h2 class="text-2xl font-semibold mb-6">Radio Buttons & Checkboxes</h2>
+      <div class="space-y-8">
+        <!-- Radio Buttons -->
+        <fieldset>
+          <legend class="text-lg font-medium text-gray-900 mb-4">Select a plan</legend>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 p-4 border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer">
+              <input
+                type="radio"
+                id="plan-basic"
+                name="plan"
+                value="basic"
+                class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-2 focus:ring-blue-600"
+              >
+              <label for="plan-basic" class="flex-1 cursor-pointer">
+                <div class="font-medium">Basic - $9/month</div>
+                <div class="text-sm text-gray-500">Perfect for individuals</div>
+              </label>
+            </div>
+            <div class="flex items-center gap-3 p-4 border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer">
+              <input
+                type="radio"
+                id="plan-pro"
+                name="plan"
+                value="pro"
+                class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-2 focus:ring-blue-600"
+                checked
+              >
+              <label for="plan-pro" class="flex-1 cursor-pointer">
+                <div class="font-medium">Pro - $29/month</div>
+                <div class="text-sm text-gray-500">Best for professionals</div>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Checkboxes -->
+        <fieldset>
+          <legend class="text-lg font-medium text-gray-900 mb-4">Select features</legend>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="feature1"
+                name="features"
+                value="analytics"
+                class="w-4 h-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-600"
+                checked
+              >
+              <label for="feature1" class="cursor-pointer">
+                <div class="font-medium">Advanced Analytics</div>
+                <div class="text-sm text-gray-500">Get detailed insights into your data</div>
+              </label>
+            </div>
+            <div class="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="feature2"
+                name="features"
+                value="support"
+                class="w-4 h-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-600"
+              >
+              <label for="feature2" class="cursor-pointer">
+                <div class="font-medium">Priority Support</div>
+                <div class="text-sm text-gray-500">Get help when you need it</div>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

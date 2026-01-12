@@ -1,0 +1,55 @@
+{
+  "name": "SaaS/Dashboard",
+  "description": "Data visualization-friendly, clean interfaces, information hierarchy",
+  "useCase": ["Software dashboards", "Data applications", "Admin panels", "Productivity tools", "Analytics platforms"],
+  "colors": {
+    "primary": "220 90% 56%",
+    "primaryDark": "220 90% 45%",
+    "primaryLight": "220 90% 67%",
+    "secondary": "260 60% 60%",
+    "accent": "142 71% 45%",
+    "background": "0 0% 98%",
+    "surface": "0 0% 100%",
+    "text": "0 0% 10%",
+    "textMuted": "0 0% 45%",
+    "success": "142 71% 45%",
+    "warning": "38 92% 50%",
+    "error": "0 84% 60%",
+    "info": "199 89% 48%"
+  },
+  "typography": {
+    "display": {
+      "family": "'Inter', 'Roboto', system-ui, sans-serif",
+      "weights": [400, 500, 600, 700],
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    },
+    "text": {
+      "family": "'Inter', system-ui, sans-serif",
+      "weights": [400, 500],
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+    }
+  },
+  "borderRadius": {
+    "sm": "0.25rem",
+    "md": "0.375rem",
+    "lg": "0.5rem",
+    "xl": "0.75rem"
+  },
+  "shadows": {
+    "sm": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+    "md": "0 2px 6px 0 rgb(0 0 0 / 0.08)",
+    "lg": "0 4px 12px 0 rgb(0 0 0 / 0.1)"
+  },
+  "spacing": {
+    "scale": "compact",
+    "sectionPadding": "py-12",
+    "componentGap": "gap-6"
+  },
+  "characteristics": [
+    "Data visualization friendly colors",
+    "Clean, organized interfaces",
+    "Clear information hierarchy",
+    "Sidebar navigation patterns",
+    "Card-based content layouts"
+  ]
+}
