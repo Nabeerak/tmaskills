@@ -1,191 +1,247 @@
-# My Skills Collection
+# TMA Skills
 
-A curated collection of production-grade skills for Claude Code and AI agents.
+A comprehensive collection of production-grade skills for Claude Code and a FastAPI task management system.
+
+## Repository Contents
+
+This repository contains:
+- **7 Production-Ready Claude Skills** for AI-assisted development
+- **Task Management API** - A FastAPI-based REST API built using the skills in this collection
+
+---
 
 ## Skills Overview
 
-| # | Skill | Description | Version |
-|---|-------|-------------|---------|
-| 1 | [fetch-library-docs](1-%20fetch-library-docs/) | Fetch library documentation with 86.8% token savings | v1.0.0 |
-| 2 | [skill-validator](2-%20skill-validator/) | Validate skills against production-level quality criteria | v1.0.0 |
-| 3 | [creating-chatgpt-widgets](3-%20chatgpt-appsdk-widget-creator/) | Create production-grade widgets for ChatGPT Apps | v1.1.0 |
-| 4 | [skill-creator-pro](4-%20skill-creator-pro/) | Create skills that score 96/100 on skill-validator | v2.1.0 |
-| 5 | [discovering-intent](5-%20discovering-intent/) | Discover user intent before building the wrong thing | v1.1.0 |
+| # | Skill | Description | Status |
+|---|-------|-------------|--------|
+| 1 | [fastapi-builder](.claude/skills/fastapi-builder/) | Build production-ready REST APIs with FastAPI | Used in Task API |
+| 2 | [pytest-tdd](.claude/skills/pytest-tdd/) | Implement Test-Driven Development workflows with pytest | Used in Task API |
+| 3 | [sqlmodel-database](.claude/skills/sqlmodel-database/) | Design and implement database schemas with SQLModel | Used in Task API |
+| 4 | [skill-creator-pro](.claude/skills/skill-creator-pro/) | Create production-grade, reusable skills | Core Tool |
+| 5 | [code-review](.claude/skills/code-review/) | Security-focused code reviews with OWASP alignment | Built with skill-creator-pro |
+| 6 | [web-theme-builder](.claude/skills/web-theme-builder/) | Build production-ready website themes with Tailwind CSS | Built with skill-creator-pro |
+| 7 | [skill-validator](.claude/skills/skill-validator/) | Validate skills against production-level criteria | Quality Assurance |
+
+---
+
+## Task Management API
+
+A production-ready REST API built using the **fastapi-builder**, **pytest-tdd**, and **sqlmodel-database** skills.
+
+**Tech Stack**:
+- FastAPI (REST API framework)
+- SQLModel (Database ORM)
+- Pytest (Testing framework)
+- SQLite (Database)
+
+**Features**:
+- Full CRUD operations for tasks
+- Request/response validation with Pydantic
+- Comprehensive test suite (unit + integration tests)
+- Proper error handling and exception management
+- OpenAPI documentation
+
+**Location**: [task-management-api/](task-management-api/)
 
 ---
 
 ## Skill Details
 
-### 1. fetch-library-docs
+### 1. fastapi-builder
 
-**Purpose**: Fetch library and framework documentation with intelligent filtering.
+**Purpose**: Build production-ready REST APIs with FastAPI following best practices.
 
 **Key Features**:
-- 86.8% token savings through shell pipeline filtering
-- Supports JavaScript, Python, Go, Rust, and other libraries
-- Cross-platform (Windows, macOS, Linux)
-- Context7 MCP integration
+- Proper project structure (models, schemas, CRUD, endpoints)
+- Request/response validation with Pydantic
+- Dependency injection patterns
+- Error handling and custom exceptions
+- Database integration with SQLModel
+- CORS and security configuration
 
-**Use When**: You need code examples, API references, or documentation for any library.
-
-```
-"Show me React useState examples"
-"How do I use Prisma queries?"
-"Get Next.js routing docs"
-```
-
-[View Documentation](1-%20fetch-library-docs/README.md) | [Changelog](1-%20fetch-library-docs/CHANGELOG.md)
+**Use When**: Creating FastAPI applications, building REST APIs, implementing CRUD operations.
 
 ---
 
-### 2. skill-validator
+### 2. pytest-tdd
 
-**Purpose**: Validate any skill against production-level quality criteria.
+**Purpose**: Implement Test-Driven Development workflows with pytest.
 
 **Key Features**:
-- 7 validation criteria with weighted scoring (0-100)
-- Actionable recommendations (High/Medium/Low priority)
-- Based on real production best practices
+- Unit and integration test patterns
+- Fixtures and parametrization
+- Mocking and dependency injection
+- AAA pattern (Arrange-Act-Assert)
+- Async testing support
+- Code coverage measurement
 
-**Use When**: You want to assess skill quality before publishing.
-
-```
-"Validate the my-skill skill"
-```
-
-[View Documentation](2-%20skill-validator/README.md) | [Changelog](2-%20skill-validator/CHANGELOG.md)
+**Use When**: Writing tests, setting up pytest, implementing TDD workflows, measuring coverage.
 
 ---
 
-### 3. creating-chatgpt-widgets
+### 3. sqlmodel-database
 
-**Purpose**: Create production-grade widgets for ChatGPT Apps using OpenAI Apps SDK.
+**Purpose**: Design and implement database schemas with SQLModel.
 
 **Key Features**:
-- Zero-shot widget creation from descriptions
-- Multiple widget types (progress, quiz, forms, charts, etc.)
-- Theme support (light/dark)
-- WCAG AA accessibility
+- Model definitions with type safety
+- Relationships (one-to-many, many-to-many)
+- CRUD operations with sessions
+- Complex queries with joins
+- Alembic migrations
+- FastAPI integration
 
-**Use When**: You're building ChatGPT custom apps with visual widgets.
-
-```
-"Create a widget for progress tracking"
-"Build a quiz interface widget"
-```
-
-[View Documentation](3-%20chatgpt-appsdk-widget-creator/README.md) | [Changelog](3-%20chatgpt-appsdk-widget-creator/CHANGELOG.md)
+**Use When**: Creating database models, implementing relationships, writing queries, setting up migrations.
 
 ---
 
 ### 4. skill-creator-pro
 
-**Purpose**: Production-grade skill creation that scores 96/100 on skill-validator.
+**Purpose**: Create production-grade, reusable skills that extend Claude's capabilities.
 
 **Key Features**:
-- Required Clarifications pattern
-- Scope Clarity (Does / Does NOT do)
-- Enforcement Checklists
-- Output quality gates
+- Gathers context from codebase and authentic sources
+- Structured skill creation workflow
+- Domain-specific intelligence building
+- Reusability and adaptability patterns
+- Quality enforcement
 
-**Use When**: You want to create high-quality skills.
+**Use When**: Building new skills for domain-specific tasks.
 
-```
-"Create a skill for [your domain]"
-```
-
-[View Documentation](4-%20skill-creator-pro/README.md) | [Changelog](4-%20skill-creator-pro/CHANGELOG.md)
+**Success Stories**: Used to create the **code-review** and **web-theme-builder** skills in this repository.
 
 ---
 
-### 5. discovering-intent
+### 5. code-review
 
-**Purpose**: Discover user intent (WHY) before taking action to prevent building the wrong thing.
+**Purpose**: Performs security-focused code reviews with OWASP alignment.
 
 **Key Features**:
-- WHY + WHAT discovery model
-- Surface and validate hidden assumptions
-- Laddering and 5 Whys techniques
-- Structured agreement before proceeding
+- OWASP Top 10 security vulnerability detection
+- JavaScript/TypeScript and Python security patterns
+- Anti-patterns and best practices validation
+- Automated scanning scripts (secret detection, dependency checks)
+- Actionable recommendations
 
-**Use When**: Requests are ambiguous, recommendations needed, brainstorming, or high-stakes work.
+**Use When**: Reviewing code, checking for security vulnerabilities, auditing code quality.
 
-```
-"Help me think through..."
-"What should I use for..."
-"Let's clarify requirements..."
-```
+**Built With**: skill-creator-pro
 
-[View Documentation](5-%20discovering-intent/README.md) | [Changelog](5-%20discovering-intent/CHANGELOG.md)
+---
+
+### 6. web-theme-builder
+
+**Purpose**: Build production-ready website themes with pre-configured design systems.
+
+**Key Features**:
+- 8 aesthetic styles (Modern/Minimalist, Corporate, Creative, Dark/Tech, etc.)
+- Pre-configured color palettes and typography pairings
+- Component libraries (buttons, cards, forms, navigation)
+- Tailwind CSS configurations
+- Responsive design patterns
+
+**Use When**: Creating website themes, designing landing pages, building component libraries.
+
+**Built With**: skill-creator-pro
+
+---
+
+### 7. skill-validator
+
+**Purpose**: Validate skills against production-level quality criteria.
+
+**Key Features**:
+- 9-category scoring system (Structure, Content, User Interaction, etc.)
+- Production-level validation criteria
+- Actionable improvement recommendations
+- Scores from 0-100
+
+**Use When**: Reviewing, auditing, or improving skills to ensure quality standards.
 
 ---
 
 ## Installation
 
-### For Claude Code
+### Installing Skills
 
-Copy the skill folder to your Claude Code skills directory:
+Copy the skill folders to your Claude Code skills directory:
 
 ```bash
 # macOS/Linux
-cp -r <skill-folder>/<skill-name> ~/.claude/skills/
+cp -r .claude/skills/* ~/.claude/skills/
 
 # Windows
-xcopy /E /I <skill-folder>\<skill-name> %USERPROFILE%\.claude\skills\<skill-name>
+xcopy /E /I .claude\skills\* %USERPROFILE%\.claude\skills\
 ```
 
-### Verify Installation
+### Running the Task Management API
 
-The skill should appear when Claude Code starts and will be automatically triggered based on its description.
+```bash
+cd task-management-api
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the API
+uvicorn app.main:app --reload
+
+# Run tests
+pytest
+
+# Run tests with coverage
+pytest --cov=app --cov-report=html
+```
+
+API will be available at `http://localhost:8000`
+- OpenAPI docs: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
 
 ---
 
 ## Repository Structure
 
 ```
-my-skills/
-├── README.md                          # This file
-├── .claude/skills/                    # Local skills (gitignored)
-├── 1- fetch-library-docs/
-│   ├── README.md
-│   ├── CHANGELOG.md
-│   ├── fetch-library-docs/            # Skill files
-│   └── skill-evaluation/              # QA evaluation
-├── 2- skill-validator/
-│   ├── README.md
-│   ├── CHANGELOG.md
-│   └── skill-validator/               # Skill files
-├── 3- chatgpt-appsdk-widget-creator/
-│   ├── README.md
-│   ├── CHANGELOG.md
-│   └── creating-chatgpt-widgets/      # Skill files
-├── 4- skill-creator-pro/
-│   ├── README.md
-│   ├── CHANGELOG.md
-│   └── skill-creator-pro/             # Skill files
-└── 5- discovering-intent/
-    ├── README.md
-    └── discovering-intent/            # Skill files
+tmaskills/
+├── README.md                              # This file
+├── .claude/
+│   └── skills/                           # Claude Code skills
+│       ├── fastapi-builder/              # FastAPI development skill
+│       ├── pytest-tdd/                   # Testing skill
+│       ├── sqlmodel-database/            # Database design skill
+│       ├── skill-creator-pro/            # Skill creation tool
+│       ├── code-review/                  # Code review skill
+│       ├── web-theme-builder/            # Theme building skill
+│       └── skill-validator/              # Skill validation tool
+└── task-management-api/                  # FastAPI project
+    ├── app/
+    │   ├── api/                          # API endpoints
+    │   ├── core/                         # Configuration & database
+    │   ├── crud/                         # CRUD operations
+    │   ├── models/                       # SQLModel models
+    │   ├── schemas/                      # Pydantic schemas
+    │   └── main.py                       # FastAPI application
+    ├── tests/
+    │   ├── unit/                         # Unit tests
+    │   └── integration/                  # Integration tests
+    └── requirements.txt                  # Python dependencies
 ```
 
 ---
 
-## Versioning
+## How This Repository Was Built
 
-All skills follow [Semantic Versioning](https://semver.org/):
+1. **skill-creator-pro** was used to create the **code-review** and **web-theme-builder** skills
+2. **fastapi-builder**, **pytest-tdd**, and **sqlmodel-database** skills were used to build the **task-management-api**
+3. **skill-validator** was used to ensure all skills meet production-level quality standards
 
-- **Major**: Breaking changes
-- **Minor**: New features (backward compatible)
-- **Patch**: Bug fixes
-
-See individual `CHANGELOG.md` files for version history.
+This demonstrates the power of reusable AI skills - once created, they can be used to build other skills and production applications.
 
 ---
 
 ## Contributing
 
 1. Fork this repository
-2. Create your skill following the patterns in `skill-creator-pro`
+2. Create your skill using `skill-creator-pro`
 3. Validate with `skill-validator` (aim for 90+ score)
 4. Submit a pull request
 
@@ -200,5 +256,6 @@ MIT License - See individual skill folders for details.
 ## Related Resources
 
 - [Claude Code Documentation](https://docs.anthropic.com/claude-code)
-- [MCP Protocol](https://modelcontextprotocol.io/)
-- [OpenAI Apps SDK](https://platform.openai.com/docs/apps)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [SQLModel Documentation](https://sqlmodel.tiangolo.com/)
+- [Pytest Documentation](https://docs.pytest.org/)
