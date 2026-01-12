@@ -369,6 +369,32 @@ Handle common errors gracefully when generating themes:
 - **Validation**: Run validation checks before finalizing output
 - **User feedback**: Show progress and clear error messages with resolution steps
 
+### Common Edge Cases
+- **Very long text**: Buttons/headings with 100+ characters → Use text truncation (text-ellipsis) or word-wrap
+- **Missing fonts**: Font fails to load → Provide fallback fonts in font stack (e.g., Arial, sans-serif)
+- **Extreme viewports**: Very narrow (<320px) or very wide (>2560px) → Test and add container max-widths
+- **Tall viewports**: Very short heights (<400px) → Avoid vh units for critical content, use min-height
+- **High contrast mode**: User OS forces colors → Use semantic HTML and test with Windows High Contrast
+- **Font scaling**: Browser zoom >200% → Test with large font sizes (16px base minimum)
+- **No JavaScript**: Users with JS disabled → Ensure core functionality works without JS
+- **Slow connections**: Large images/fonts → Optimize assets, use font-display: swap
+
+**Example: Edge handling in CSS**
+```css
+/* Handle long text gracefully */
+.button {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Provide comprehensive font fallbacks */
+:root {
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+```
+
 **Example: Error handling in scripts**
 ```python
 try:

@@ -47,30 +47,89 @@ async def get_task(session: AsyncSession, task_id: int) -> Optional[Task]:
 async def get_tasks(
     session: AsyncSession,
     skip: int = 0,
-    limit: int = 100
+    limit: int = 100,
+    status: Optional[str] = None,
+    priority: Optional[str] = None
 ) -> tuple[list[Task], int]:
     """
-    Retrieve multiple tasks with pagination.
+    Retrieve multiple tasks with pagination and optional filtering.
 
     Args:
         session: Database session
+        skip: Number of records to skip (offset)
+        limit: Maximum number of records to return
+        status: Optional status filter
+        priority: Optional priority filter
+
+    Returns:
+        Tuple of (list of tasks, total count)
+    """
+    # Build query with optional filters
+    statement = select(Task)
+
+    if status:
+        statement = statement.where(Task.status == status)
+    if priority:
+        statement = statement.where(Task.priority == priority)
+
+    # Apply pagination and ordering
+    statement = statement.offset(skip).limit(limit).order_by(Task.created_at.desc())
+    result = await session.execute(statement)
+    tasks = result.scalars().all()
+
+    # Get total count with same filters
+    count_statement = select(Task)
+    if status:
+        count_statement = count_statement.where(Task.status == status)
+    if priority:
+        count_statement = count_statement.where(Task.priority == priority)
+
+    count_result = await session.execute(count_statement)
+    total = len(count_result.scalars().all())
+
+    return list(tasks), total
+
+
+async def get_tasks_by_status(
+    session: AsyncSession,
+    status: str,
+    skip: int = 0,
+    limit: int = 100
+) -> tuple[list[Task], int]:
+    """
+    Retrieve tasks filtered by status.
+
+    Args:
+        session: Database session
+        status: Task status to filter by
         skip: Number of records to skip (offset)
         limit: Maximum number of records to return
 
     Returns:
         Tuple of (list of tasks, total count)
     """
-    # Get tasks with pagination
-    statement = select(Task).offset(skip).limit(limit).order_by(Task.created_at.desc())
-    result = await session.execute(statement)
-    tasks = result.scalars().all()
+    return await get_tasks(session, skip=skip, limit=limit, status=status)
 
-    # Get total count
-    count_statement = select(Task)
-    count_result = await session.execute(count_statement)
-    total = len(count_result.scalars().all())
 
-    return list(tasks), total
+async def get_tasks_by_priority(
+    session: AsyncSession,
+    priority: str,
+    skip: int = 0,
+    limit: int = 100
+) -> tuple[list[Task], int]:
+    """
+    Retrieve tasks filtered by priority.
+
+    Args:
+        session: Database session
+        priority: Task priority to filter by
+        skip: Number of records to skip (offset)
+        limit: Maximum number of records to return
+
+    Returns:
+        Tuple of (list of tasks, total count)
+    """
+    return await get_tasks(session, skip=skip, limit=limit, priority=priority)
 
 
 async def update_task(

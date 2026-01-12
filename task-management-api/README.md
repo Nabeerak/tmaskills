@@ -2,6 +2,12 @@
 
 A production-ready REST API built with FastAPI and SQLModel for managing tasks with full CRUD operations.
 
+## Demo Video
+
+[![Demo Video](https://img.youtube.com/vi/6nCRB7PNIPA/0.jpg)](https://youtu.be/6nCRB7PNIPA)
+
+Watch the demo: [https://youtu.be/6nCRB7PNIPA](https://youtu.be/6nCRB7PNIPA)
+
 ## Features
 
 - ✅ Full CRUD operations (Create, Read, Update, Delete)

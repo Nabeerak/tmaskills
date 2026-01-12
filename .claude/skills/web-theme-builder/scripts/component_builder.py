@@ -11,6 +11,7 @@ Usage:
 """
 
 import argparse
+from datetime import datetime
 import sys
 from pathlib import Path
 from typing import Dict
@@ -408,6 +409,11 @@ def main():
 
     # Generate component file
     component_html = component_data["variants"][args.variant]
+
+    # Replace placeholder year with current year
+    current_year = datetime.now().year
+    component_html = component_html.replace("2024", str(current_year))
+
     filename = f"{args.component}-{args.variant}.html"
     output_file = output_dir / filename
 

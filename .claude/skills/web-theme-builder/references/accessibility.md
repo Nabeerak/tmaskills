@@ -393,7 +393,7 @@ previouslyFocused.focus();
 </aside>
 
 <footer>
-  <p>&copy; 2024 Company</p>
+  <p>&copy; {{YEAR}} Company</p>
 </footer>
 
 <!-- ❌ Bad: Generic divs -->
@@ -529,7 +529,7 @@ Use when semantic HTML isn't sufficient:
 
 <!-- Content info (footer) -->
 <footer role="contentinfo">
-  <p>&copy; 2024</p>
+  <p>&copy; {{YEAR}}</p>
 </footer>
 ```
 
@@ -676,7 +676,7 @@ Associate errors with inputs:
 
 ```html
 <!-- ✅ Informative image -->
-<img src="chart.png" alt="Bar chart showing 50% increase in sales from 2023 to 2024">
+<img src="chart.png" alt="Bar chart showing 50% increase in sales from 2023 to {{YEAR}}">
 
 <!-- ✅ Decorative image -->
 <img src="decorative-pattern.svg" alt="" role="presentation">
@@ -700,7 +700,7 @@ Associate errors with inputs:
 <img src="photo.jpg" alt="image">
 
 <!-- ❌ Bad: Filename as alt -->
-<img src="hero_banner_2024.png" alt="hero_banner_2024.png">
+<img src="hero_banner_{{YEAR}}.png" alt="hero_banner_{{YEAR}}.png">
 ```
 
 ### Alt Text Guidelines

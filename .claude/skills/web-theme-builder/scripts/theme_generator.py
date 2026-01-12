@@ -12,6 +12,7 @@ Usage:
 """
 
 import argparse
+from datetime import datetime
 import json
 import os
 import sys
@@ -310,6 +311,7 @@ def generate_theme_css(theme_config: Dict[str, Any], dark_mode: bool = False) ->
 
 def generate_html_template(theme_name: str) -> str:
     """Generate sample HTML template using the theme."""
+    current_year = datetime.now().year
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -381,7 +383,7 @@ def generate_html_template(theme_name: str) -> str:
   <!-- Footer -->
   <footer class="bg-surface border-t border-gray-200 py-8 px-4">
     <div class="max-w-7xl mx-auto text-center">
-      <p class="text-text-muted">&copy; 2024 Your Company. All rights reserved.</p>
+      <p class="text-text-muted">&copy; {current_year} Your Company. All rights reserved.</p>
     </div>
   </footer>
 </body>

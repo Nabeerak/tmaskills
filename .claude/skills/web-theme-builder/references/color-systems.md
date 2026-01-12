@@ -177,6 +177,28 @@ function generatePalette(baseHue) {
 - Lighter shades: reduce saturation to avoid neon appearance
 - Darker shades: reduce saturation to maintain richness
 
+**Examples:**
+
+```css
+/* ✅ Good: Consistent hue, adjusted saturation */
+--color-primary-50: hsl(220, 70%, 97%);   /* Reduced saturation for light shade */
+--color-primary-500: hsl(220, 90%, 56%);  /* Base color */
+--color-primary-900: hsl(220, 80%, 20%);  /* Slightly reduced for dark shade */
+
+/* ❌ Bad: Random hue changes break visual harmony */
+--color-primary-50: hsl(200, 70%, 97%);   /* Different hue - looks inconsistent */
+--color-primary-500: hsl(220, 90%, 56%);
+--color-primary-900: hsl(240, 80%, 20%);  /* Different hue - breaks system */
+
+/* ✅ Good: Sufficient contrast for accessibility */
+--color-background: hsl(0, 0%, 100%);
+--color-text: hsl(0, 0%, 10%);            /* 18.4:1 contrast ratio */
+
+/* ❌ Bad: Poor contrast fails WCAG */
+--color-background: hsl(0, 0%, 100%);
+--color-text: hsl(0, 0%, 70%);            /* 2.4:1 contrast - fails AA */
+```
+
 ---
 
 ## Accessibility Standards (WCAG)

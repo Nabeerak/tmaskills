@@ -1,4 +1,18 @@
 """Exception classes for the API."""
-from app.exceptions.errors import TaskNotFound, TaskValidationError, InvalidQuery
+from app.exceptions.handlers import (
+    TaskNotFoundException,
+    DatabaseException,
+    task_not_found_handler,
+    validation_exception_handler,
+    database_exception_handler,
+    general_exception_handler
+)
 
-__all__ = ["TaskNotFound", "TaskValidationError", "InvalidQuery"]
+__all__ = [
+    "TaskNotFoundException",
+    "DatabaseException",
+    "task_not_found_handler",
+    "validation_exception_handler",
+    "database_exception_handler",
+    "general_exception_handler"
+]

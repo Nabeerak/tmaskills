@@ -69,7 +69,7 @@ class TestTaskDeletion:
 
         # Assert
         data = list_response.json()
-        task_ids = [task["id"] for task in data["tasks"]]
+        task_ids = [task["id"] for task in data["items"]]
         assert task_id not in task_ids
         assert data["total"] == 0  # Only one task existed, now deleted
 
@@ -172,7 +172,7 @@ class TestTaskDeletion:
         # Assert
         data = list_response.json()
         assert data["total"] == initial_count - 1  # 4 tasks remaining
-        assert len(data["tasks"]) == initial_count - 1
+        assert len(data["items"]) == initial_count - 1
 
     @pytest.mark.asyncio
     @pytest.mark.integration
@@ -194,7 +194,7 @@ class TestTaskDeletion:
         # Assert
         data = list_response.json()
         assert data["total"] == 0
-        assert data["tasks"] == []
+        assert data["items"] == []
 
     @pytest.mark.asyncio
     @pytest.mark.integration

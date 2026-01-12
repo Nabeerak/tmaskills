@@ -29,6 +29,11 @@ build-backend = "poetry.core.masonry.api"
 asyncio_mode = "auto"
 testpaths = ["tests"]
 python_files = ["test_*.py"]
+markers = [
+    "unit: Unit tests (fast, isolated)",
+    "integration: Integration tests (with dependencies)",
+    "slow: Slow tests (may take more time)",
+]
 
 [tool.black]
 line-length = 100

@@ -39,12 +39,35 @@ async def task_not_found_handler(request: Request, exc: TaskNotFoundException) -
 
 async def validation_exception_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
     """Handler for request validation errors."""
+    # Convert error details to JSON-serializable format
+    errors = []
+    for error in exc.errors():
+        error_dict = {
+            "loc": error.get("loc"),
+            "msg": error.get("msg"),
+            "type": error.get("type"),
+        }
+        # Handle ctx field which may contain non-serializable objects
+        if "ctx" in error:
+            ctx = error["ctx"]
+            if isinstance(ctx, dict):
+                error_dict["ctx"] = {k: str(v) for k, v in ctx.items()}
+            else:
+                error_dict["ctx"] = str(ctx)
+        # Handle input field
+        if "input" in error:
+            try:
+                error_dict["input"] = error["input"]
+            except (TypeError, ValueError):
+                error_dict["input"] = str(error["input"])
+        errors.append(error_dict)
+
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content={
             "error": "Validation Error",
             "message": "Invalid request data",
-            "details": exc.errors(),
+            "details": errors,
             "path": str(request.url.path)
         }
     )

@@ -118,8 +118,14 @@ For specific needs:
 Responsive container with max-width:
 
 ```html
+<!-- ✅ Good: Flexible container with max-width -->
 <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
   <!-- Content constrained to max 1280px with responsive padding -->
+</div>
+
+<!-- ❌ Bad: Fixed width container -->
+<div style="width: 1280px; margin: 0 auto;">
+  <!-- Breaks on screens < 1280px, causes horizontal scroll -->
 </div>
 ```
 
@@ -170,10 +176,16 @@ Sizes:
 **Stack to Row:**
 
 ```html
+<!-- ✅ Good: Mobile-first stack to row -->
 <div class="flex flex-col md:flex-row gap-4">
   <div class="flex-1">Item 1</div>
   <div class="flex-1">Item 2</div>
   <div class="flex-1">Item 3</div>
+</div>
+
+<!-- ❌ Bad: Desktop-first requiring overrides -->
+<div class="flex flex-row md:flex-col">
+  <!-- Backwards, harder to maintain -->
 </div>
 ```
 

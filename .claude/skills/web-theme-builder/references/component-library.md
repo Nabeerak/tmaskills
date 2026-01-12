@@ -115,7 +115,7 @@ Complete HTML/Tailwind component patterns for all standard web elements.
   <img src="blog-image.jpg" alt="Article title" class="w-full h-48 object-cover">
   <div class="p-6">
     <div class="flex items-center gap-2 text-sm text-text-muted mb-3">
-      <time datetime="2024-01-15">Jan 15, 2024</time>
+      <time datetime="{{YEAR}}-01-15">Jan 15, {{YEAR}}</time>
       <span>•</span>
       <span>5 min read</span>
     </div>
@@ -595,7 +595,7 @@ Complete HTML/Tailwind component patterns for all standard web elements.
 ```html
 <footer class="bg-surface border-t border-gray-200 py-8 px-4">
   <div class="max-w-7xl mx-auto text-center">
-    <p class="text-text-muted mb-4">&copy; 2024 Your Company. All rights reserved.</p>
+    <p class="text-text-muted mb-4">&copy; {{YEAR}} Your Company. All rights reserved.</p>
     <div class="flex justify-center gap-6">
       <a href="#" class="text-text-muted hover:text-primary transition-colors">Privacy Policy</a>
       <a href="#" class="text-text-muted hover:text-primary transition-colors">Terms of Service</a>
@@ -613,7 +613,7 @@ Complete HTML/Tailwind component patterns for all standard web elements.
     <!-- Company Info -->
     <div>
       <h3 class="text-2xl font-display font-bold text-primary mb-4">Brand</h3>
-      <p class="text-text-muted">Building amazing web experiences since 2024.</p>
+      <p class="text-text-muted">Building amazing web experiences since {{YEAR}}.</p>
     </div>
 
     <!-- Product Links -->
@@ -650,7 +650,7 @@ Complete HTML/Tailwind component patterns for all standard web elements.
   <!-- Bottom Bar -->
   <div class="border-t border-gray-200 pt-8">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-text-muted">&copy; 2024 Your Company. All rights reserved.</p>
+      <p class="text-text-muted">&copy; {{YEAR}} Your Company. All rights reserved.</p>
       <div class="flex gap-4">
         <a href="#" class="text-text-muted hover:text-primary transition-colors" aria-label="Twitter">
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
@@ -723,7 +723,7 @@ Complete HTML/Tailwind component patterns for all standard web elements.
 
     <!-- Copyright -->
     <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
-      <p>&copy; 2024 Your Company. All rights reserved.</p>
+      <p>&copy; {{YEAR}} Your Company. All rights reserved.</p>
     </div>
   </div>
 </footer>
