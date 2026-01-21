@@ -2,6 +2,13 @@
 name: web-theme-builder
 description: |
   Build production-ready website themes with pre-configured color palettes, typography pairings, component libraries, and Tailwind CSS configurations for 8 aesthetic styles (Modern/Minimalist, Corporate, Creative, Dark/Tech, Warm, E-commerce, SaaS, Portfolio). This skill should be used when users ask to create website themes, design landing pages, build component libraries, configure Tailwind themes, or implement responsive design systems with specific aesthetic styles.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # Web Design Theme Builder
@@ -73,55 +80,18 @@ Ask if context suggests need:
 
 Choose theme based on brand personality and target audience:
 
-### 1. Modern/Minimalist
-**When to use**: SaaS products, tech startups, design agencies
-**Characteristics**: Maximum whitespace, monochromatic colors (blacks/whites/grays), clean typography, simple geometric shapes
-**Examples**: Apple, Stripe, Linear
-**Best for**: Products emphasizing simplicity, elegance, professionalism
+| Theme | Best For | Key Colors |
+|-------|----------|------------|
+| Modern/Minimalist | SaaS, tech startups, design agencies | Grayscale |
+| Corporate/Professional | Enterprise, B2B, financial services | Blues |
+| Creative/Bold | Agencies, entertainment, events | Vibrant purples/pinks |
+| Dark/Tech | Developer tools, gaming, tech products | Dark + neon accents |
+| Warm/Friendly | Community, education, wellness | Oranges/corals |
+| E-commerce/Product | Online stores, retail, marketplaces | Trust greens |
+| SaaS/Dashboard | Dashboards, admin panels, data apps | Action blues |
+| Portfolio/Personal | Personal brands, freelancers | Variable |
 
-### 2. Corporate/Professional
-**When to use**: Enterprise software, financial services, consulting firms, B2B
-**Characteristics**: Trust-building blues, structured layouts, conservative typography, high contrast
-**Examples**: IBM, Microsoft, Salesforce
-**Best for**: Establishing credibility, professional authority
-
-###3. Creative/Bold
-**When to use**: Creative agencies, art galleries, entertainment, events
-**Characteristics**: Vibrant colors, experimental layouts, unique typography, high energy
-**Examples**: Awwwards winners, Dribbble showcases
-**Best for**: Standing out, expressing creativity, younger audiences
-
-### 4. Dark/Tech
-**When to use**: Developer tools, gaming, tech products, modern software
-**Characteristics**: Dark backgrounds, neon accents, futuristic feel, high contrast
-**Examples**: GitHub Dark, Vercel, Discord
-**Best for**: Technical products, developer-focused tools, modern aesthetic
-
-### 5. Warm/Friendly
-**When to use**: Community platforms, education, wellness, lifestyle brands
-**Characteristics**: Soft colors, rounded corners, inviting feel, approachable typography
-**Examples**: Airbnb, Etsy, Mailchimp
-**Best for**: Building trust, warmth, community feeling
-
-### 6. E-commerce/Product
-**When to use**: Online stores, product showcases, retail
-**Characteristics**: Product-focused layouts, conversion-optimized, clear CTAs, trust signals
-**Examples**: Shopify stores, Amazon product pages
-**Best for**: Driving sales, showcasing products, clear user journeys
-
-### 7. SaaS/Dashboard
-**When to use**: Software dashboards, data applications, admin panels
-**Characteristics**: Data visualization-friendly, clean interfaces, information hierarchy
-**Examples**: Notion, Figma, Asana
-**Best for**: Complex applications, data-heavy interfaces, productivity tools
-
-### 8. Portfolio/Personal
-**When to use**: Personal websites, designer portfolios, freelancers
-**Characteristics**: Personality-driven, showcase work, unique layouts, storytelling
-**Examples**: Designer portfolios, personal brands
-**Best for**: Individual expression, showcasing creative work
-
-See `references/theme-variations.md` for detailed color palettes and examples.
+See `references/theme-selection-guide.md` for detailed characteristics, color palettes, and examples for each theme.
 
 ---
 
@@ -304,168 +274,38 @@ See `references/accessibility.md` for detailed accessibility guidelines.
 
 ## Security Considerations
 
-When generating themes and components, follow these security practices:
+Follow security practices when generating themes:
 
-### Input Sanitization
-- **User-provided content**: Sanitize all user-provided text (names, descriptions, custom colors) before inserting into HTML
-- **Color values**: Validate HSL/hex color input to prevent CSS injection (only accept numeric values and valid formats)
-- **File names**: Sanitize file names and paths to prevent directory traversal attacks
-- **Script parameters**: Validate all command-line arguments before processing
+- **Input sanitization**: Validate colors, sanitize user text, check file paths
+- **XSS prevention**: Escape HTML entities, avoid inline JavaScript
+- **Safe defaults**: Use HTTPS for external resources, provide fallback fonts
 
-### XSS Prevention
-- **Escape HTML entities**: When generating HTML with user content, escape `<`, `>`, `&`, `"`, and `'`
-- **Avoid inline JavaScript**: Never generate inline JavaScript with user input
-- **Content Security Policy**: Recommend CSP headers for generated sites
-- **Alt text**: Sanitize image alt text attributes
-
-### Safe Defaults
-- **Content placeholders**: Use safe placeholder text in generated templates
-- **External resources**: Use HTTPS for all external fonts and CDN resources
-- **Font loading**: Use `font-display: swap` to prevent FOIT/FOUT attacks
-
-### Generated Code Safety
-- **No eval()**: Never generate JavaScript code using eval() or Function()
-- **Validate URLs**: Check that links and image sources are valid URLs
-- **ARIA attributes**: Validate ARIA attribute values to prevent injection
-
-**Example: Safe color validation**
-```python
-import re
-
-def validate_hsl_color(hsl_string):
-    """Validate HSL color format to prevent injection."""
-    pattern = r'^\d{1,3}\s+\d{1,3}%\s+\d{1,3}%$'
-    if not re.match(pattern, hsl_string):
-        raise ValueError("Invalid HSL format")
-
-    h, s, l = map(lambda x: int(x.rstrip('%')), hsl_string.split())
-    if not (0 <= h <= 360 and 0 <= s <= 100 and 0 <= l <= 100):
-        raise ValueError("HSL values out of range")
-
-    return True
-```
+See `references/security.md` for detailed guidelines and code examples.
 
 ---
 
 ## Error Handling
 
-Handle common errors gracefully when generating themes:
+Handle errors gracefully:
 
-### Script Execution Errors
-- **Missing arguments**: Provide clear error messages with usage examples
-- **Invalid input**: Validate inputs before processing and show specific error messages
-- **File system errors**: Handle permission errors, disk full, invalid paths
-- **Dependency errors**: Check for required tools/libraries and provide installation guidance
+- **Script errors**: Validate inputs, handle file system errors, provide clear messages
+- **Generation failures**: Check contrast, provide fallbacks, validate before writing
+- **Edge cases**: Handle long text, missing fonts, extreme viewports
 
-### Generation Failures
-- **Invalid color combinations**: Check accessibility contrast before generating
-- **Font loading failures**: Provide fallback fonts in generated CSS
-- **Asset not found**: Verify template files exist before reading
-- **Malformed templates**: Validate JSON/CSS syntax before writing files
-
-### Recovery Strategies
-- **Partial generation**: If one component fails, continue with others and report failure
-- **Rollback**: Provide option to revert to previous working state
-- **Validation**: Run validation checks before finalizing output
-- **User feedback**: Show progress and clear error messages with resolution steps
-
-### Common Edge Cases
-- **Very long text**: Buttons/headings with 100+ characters → Use text truncation (text-ellipsis) or word-wrap
-- **Missing fonts**: Font fails to load → Provide fallback fonts in font stack (e.g., Arial, sans-serif)
-- **Extreme viewports**: Very narrow (<320px) or very wide (>2560px) → Test and add container max-widths
-- **Tall viewports**: Very short heights (<400px) → Avoid vh units for critical content, use min-height
-- **High contrast mode**: User OS forces colors → Use semantic HTML and test with Windows High Contrast
-- **Font scaling**: Browser zoom >200% → Test with large font sizes (16px base minimum)
-- **No JavaScript**: Users with JS disabled → Ensure core functionality works without JS
-- **Slow connections**: Large images/fonts → Optimize assets, use font-display: swap
-
-**Example: Edge handling in CSS**
-```css
-/* Handle long text gracefully */
-.button {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Provide comprehensive font fallbacks */
-:root {
-  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-```
-
-**Example: Error handling in scripts**
-```python
-try:
-    theme_css = generate_theme_css(theme_config, args.dark_mode)
-    output_file.write_text(theme_css)
-    print(f"✅ Created {output_file}")
-except PermissionError:
-    print(f"❌ Error: No write permission for {output_file}")
-    print("   Solution: Check file permissions or choose different output directory")
-    sys.exit(1)
-except ValueError as e:
-    print(f"❌ Error: Invalid theme configuration - {e}")
-    print("   Solution: Check theme config values are valid")
-    sys.exit(1)
-```
+See `references/error-handling.md` for detailed patterns and code examples.
 
 ---
 
 ## Testing & Verification
 
-Verify generated themes and components work correctly:
+Verify generated themes work correctly:
 
-### Visual Testing
-- **Browser testing**: Open generated HTML in Chrome, Firefox, Safari
-- **Responsive testing**: Test at breakpoints (320px, 768px, 1024px, 1440px)
-- **Dark mode**: Toggle dark mode and verify colors remain accessible
-- **Color contrast**: Use browser DevTools or WebAIM contrast checker to verify 4.5:1 ratio
-- **Font rendering**: Verify fonts load correctly and fallbacks work
+- **Visual**: Browser testing, responsive breakpoints, dark mode, contrast
+- **Functional**: Interactive elements, keyboard navigation, touch targets
+- **Accessibility**: Screen reader, ARIA validation, semantic HTML
+- **Code quality**: HTML/CSS validation, Lighthouse audit
 
-### Functional Testing
-- **Interactive elements**: Test all buttons, forms, links for proper behavior
-- **Keyboard navigation**: Tab through interactive elements, verify focus states visible
-- **Touch targets**: Verify buttons/links are at least 44x44px on mobile
-- **Form validation**: Test form inputs accept valid data and reject invalid data
-- **Navigation**: Verify all navigation links work and mobile menu functions
-
-### Accessibility Testing
-- **Screen reader**: Test with NVDA/JAWS (Windows) or VoiceOver (Mac)
-- **Keyboard only**: Navigate entire page using only keyboard
-- **ARIA validation**: Use axe DevTools or WAVE to check ARIA implementation
-- **Semantic HTML**: Verify proper heading hierarchy (h1 → h2 → h3)
-- **Alt text**: Check all images have descriptive alt attributes
-
-### Code Quality
-- **HTML validation**: Run through W3C HTML validator
-- **CSS validation**: Run through W3C CSS validator
-- **Lighthouse audit**: Run Chrome Lighthouse for performance/accessibility scores
-- **Console errors**: Check browser console for JavaScript/CSS errors
-- **Broken links**: Verify no 404s for images, fonts, or other assets
-
-### Cross-browser Compatibility
-- **Modern browsers**: Chrome, Firefox, Safari, Edge (latest versions)
-- **Mobile browsers**: iOS Safari, Chrome Mobile, Samsung Internet
-- **Vendor prefixes**: Check CSS autoprefixer for older browser support
-
-**Testing Checklist (Quick)**
-```bash
-# 1. Visual test in browser
-open index.html
-
-# 2. Validate HTML
-curl -H "Content-Type: text/html; charset=utf-8" \
-  --data-binary @index.html \
-  https://validator.w3.org/nu/?out=text
-
-# 3. Check contrast (using npm package)
-npx @cypress/accessibility-checker index.html
-
-# 4. Lighthouse audit
-npx lighthouse index.html --view
-```
+See `references/testing.md` for detailed testing procedures and commands.
 
 ---
 
@@ -562,37 +402,48 @@ python3 scripts/palette_generator.py --help
 | `assets/components/` | HTML/Tailwind templates for standard components |
 | `assets/templates/` | Full page templates (landing, about, contact) |
 | `assets/fonts/` | Font pairing recommendations with Google Fonts links |
+| `assets/examples/` | Example generated output (theme.css, index.html) |
 
 ---
 
 ## Reference Files
 
-| File | When to Read |
-|------|--------------|
-| `references/theme-variations.md` | Detailed breakdown of all 8 themes with color palettes and examples |
-| `references/color-systems.md` | Color theory, HSL system, accessibility, dark mode implementation |
-| `references/typography-guide.md` | Font pairing principles, type scale, web font optimization |
-| `references/component-library.md` | Detailed component patterns with HTML/Tailwind code examples |
-| `references/tailwind-config.md` | Tailwind CSS v4.0 @theme patterns and design token examples |
-| `references/responsive-patterns.md` | Mobile-first approach, breakpoints, flexible layouts |
-| `references/accessibility.md` | WCAG guidelines, keyboard navigation, screen readers |
-| `references/design-principles.md` | Design theory for each theme type, when to use what |
+| File | When to Read | Size |
+|------|--------------|------|
+| `references/theme-selection-guide.md` | Choosing the right theme for brand/audience | ~200 lines |
+| `references/theme-variations.md` | Detailed breakdown of all 8 themes with color palettes | ~300 lines |
+| `references/color-systems.md` | Color theory, HSL system, accessibility, dark mode | ~250 lines |
+| `references/typography-guide.md` | Font pairing principles, type scale, web font optimization | ~200 lines |
+| `references/component-library.md` | Detailed component patterns with HTML/Tailwind examples | ~850 lines |
+| `references/tailwind-config.md` | Tailwind CSS v4.0 @theme patterns and design tokens | ~200 lines |
+| `references/responsive-patterns.md` | Mobile-first approach, breakpoints, flexible layouts | ~150 lines |
+| `references/accessibility.md` | WCAG guidelines, keyboard navigation, screen readers | ~200 lines |
+| `references/design-principles.md` | Design theory for each theme type, when to use what | ~150 lines |
+| `references/security.md` | Input sanitization, XSS prevention, safe defaults | ~150 lines |
+| `references/error-handling.md` | Script errors, generation failures, edge cases | ~200 lines |
+| `references/testing.md` | Visual, functional, accessibility, code quality testing | ~250 lines |
 
-**Finding Specific Topics**: All reference files include table of contents. For quick searches, use these patterns:
+**Finding Specific Topics**: Use these grep patterns to navigate large reference files:
 
 ```bash
-# Color palette examples
-grep -r "hsl(\|--color-" references/
+# Color palette examples (HSL values)
+grep -n "hsl\|--color-" references/color-systems.md
 
-# Component code
-grep -r "<button\|<card\|<form" references/
+# Specific theme colors
+grep -n -A5 "Primary:" references/theme-selection-guide.md
+
+# Component HTML patterns
+grep -n "<button\|<div class=\"bg-" references/component-library.md
 
 # Accessibility patterns
-grep -r "aria-\|role=\|contrast" references/
+grep -n "aria-\|role=\|4.5:1\|contrast" references/accessibility.md
 
-# Responsive patterns
-grep -r "@media\|sm:\|md:\|lg:" references/
+# Responsive breakpoints
+grep -n "sm:\|md:\|lg:\|@media" references/responsive-patterns.md
 
-# Typography
-grep -r "font-\|text-\|tracking-" references/
+# Typography settings
+grep -n "font-family\|font-size\|--font-" references/typography-guide.md
+
+# Tailwind @theme config
+grep -n "@theme\|--spacing\|--radius" references/tailwind-config.md
 ```

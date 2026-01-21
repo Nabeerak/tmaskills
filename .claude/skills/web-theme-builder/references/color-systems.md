@@ -400,26 +400,26 @@ Tailwind CSS v4.0 introduces the `@theme` directive for design tokens:
 
 ## References
 
-1. **Loungelizard** - "Color Trends in Web Design"
-   Insights on color psychology and modern web design trends
-   https://www.loungelizard.com/
+1. **Smashing Magazine** - "A Comprehensive Guide To Color Theory"
+   Detailed exploration of color theory principles for web design
+   https://www.smashingmagazine.com/2021/09/color-theory-for-designers-a-crash-course/
 
 2. **Elementor** - "Color Theory for Web Design"
    Comprehensive guide to applying color theory in digital design
    https://elementor.com/blog/color-theory/
 
-3. **Medium Design Systems** - "Building a Color System"
-   Article on scalable color systems and design token architecture
-   https://medium.com/
+3. **Figma** - "Building Color Systems"
+   Practical guide on scalable color systems and design token architecture
+   https://www.figma.com/best-practices/creating-and-maintaining-a-design-system/color-styles/
 
-4. **WCAG 2.1 Guidelines** - Web Content Accessibility Guidelines
+4. **WCAG 2.2 Guidelines** - Web Content Accessibility Guidelines
    Official standards for color contrast and accessibility
-   https://www.w3.org/WAI/WCAG21/
+   https://www.w3.org/WAI/WCAG22/quickref/#use-of-color
 
-5. **Material Design** - Color System
+5. **Material Design 3** - Color System
    Google's approach to color in design systems
-   https://m3.material.io/styles/color/
+   https://m3.material.io/styles/color/overview
 
 6. **Tailwind CSS v4.0 Documentation** - Theme Configuration
    Official documentation for the new @theme directive
-   https://tailwindcss.com/
+   https://tailwindcss.com/docs/theme

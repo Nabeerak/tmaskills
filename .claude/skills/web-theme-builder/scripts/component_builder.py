@@ -17,6 +17,53 @@ from pathlib import Path
 from typing import Dict
 
 
+def safe_write_file(file_path: Path, content: str, description: str) -> bool:
+    """
+    Safely write content to a file with error handling.
+
+    Args:
+        file_path: Path to write to
+        content: Content to write
+        description: Description for error messages
+
+    Returns:
+        True if successful, exits on failure.
+    """
+    try:
+        file_path.write_text(content)
+        return True
+    except PermissionError:
+        print(f"❌ Error: No write permission for {file_path}")
+        print(f"   Solution: Check file permissions or choose different output directory")
+        sys.exit(1)
+    except OSError as e:
+        print(f"❌ Error writing {description}: {e}")
+        print(f"   Solution: Check disk space and file system permissions")
+        sys.exit(1)
+
+
+def safe_create_directory(dir_path: Path) -> bool:
+    """
+    Safely create a directory with error handling.
+
+    Args:
+        dir_path: Path to create
+
+    Returns:
+        True if successful, exits on failure.
+    """
+    try:
+        dir_path.mkdir(parents=True, exist_ok=True)
+        return True
+    except PermissionError:
+        print(f"❌ Error: No permission to create directory {dir_path}")
+        print(f"   Solution: Check directory permissions or choose different location")
+        sys.exit(1)
+    except OSError as e:
+        print(f"❌ Error creating directory {dir_path}: {e}")
+        sys.exit(1)
+
+
 # Component templates
 COMPONENTS = {
     "button": {
@@ -403,9 +450,9 @@ def main():
         print(f"Available variants: {', '.join(component_data['variants'].keys())}")
         sys.exit(1)
 
-    # Create output directory
+    # Create output directory with error handling
     output_dir = Path(args.output)
-    output_dir.mkdir(parents=True, exist_ok=True)
+    safe_create_directory(output_dir)
 
     # Generate component file
     component_html = component_data["variants"][args.variant]
@@ -436,7 +483,8 @@ def main():
 </html>
 """
 
-    output_file.write_text(complete_html)
+    # Write file with error handling
+    safe_write_file(output_file, complete_html, filename)
 
     print(f"\n✅ Component generated: {output_file.absolute()}")
     print(f"\n📝 To use this component:")

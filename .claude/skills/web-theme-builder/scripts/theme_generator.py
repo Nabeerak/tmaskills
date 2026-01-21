@@ -15,193 +15,206 @@ import argparse
 from datetime import datetime
 import json
 import os
+import re
 import sys
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 
-# Theme configurations
-THEMES = {
-    "modern": {
-        "name": "Modern/Minimalist",
-        "description": "Maximum whitespace, monochromatic colors, clean typography",
-        "colors": {
-            "primary": "0 0% 10%",
-            "secondary": "0 0% 30%",
-            "accent": "0 0% 50%",
-            "background": "0 0% 100%",
-            "surface": "0 0% 98%",
-            "text": "0 0% 10%",
-            "text-muted": "0 0% 45%"
-        },
-        "fonts": {
-            "display": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-            "text": "'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
-        },
-        "radius": {
-            "sm": "0.125rem",
-            "md": "0.25rem",
-            "lg": "0.375rem"
-        }
-    },
-    "corporate": {
-        "name": "Corporate/Professional",
-        "description": "Trust-building blues, structured layouts, professional",
-        "colors": {
-            "primary": "220 90% 56%",
-            "secondary": "220 70% 45%",
-            "accent": "210 80% 60%",
-            "background": "0 0% 100%",
-            "surface": "210 20% 98%",
-            "text": "220 30% 15%",
-            "text-muted": "220 15% 50%"
-        },
-        "fonts": {
-            "display": "'Inter', 'Roboto', sans-serif",
-            "text": "'Inter', sans-serif"
-        },
-        "radius": {
-            "sm": "0.25rem",
-            "md": "0.5rem",
-            "lg": "0.75rem"
-        }
-    },
-    "creative": {
-        "name": "Creative/Bold",
-        "description": "Vibrant colors, experimental layouts, high energy",
-        "colors": {
-            "primary": "280 100% 50%",
-            "secondary": "340 100% 60%",
-            "accent": "45 100% 50%",
-            "background": "0 0% 100%",
-            "surface": "0 0% 98%",
-            "text": "0 0% 10%",
-            "text-muted": "0 0% 45%"
-        },
-        "fonts": {
-            "display": "'Space Grotesk', 'Poppins', sans-serif",
-            "text": "'Inter', 'Work Sans', sans-serif"
-        },
-        "radius": {
-            "sm": "0.5rem",
-            "md": "1rem",
-            "lg": "1.5rem"
-        }
-    },
-    "dark": {
-        "name": "Dark/Tech",
-        "description": "Dark backgrounds, neon accents, futuristic",
-        "colors": {
-            "primary": "180 100% 50%",
-            "secondary": "280 100% 60%",
-            "accent": "330 100% 60%",
-            "background": "220 20% 10%",
-            "surface": "220 18% 15%",
-            "text": "0 0% 95%",
-            "text-muted": "0 0% 60%"
-        },
-        "fonts": {
-            "display": "'JetBrains Mono', 'Fira Code', monospace",
-            "text": "'Inter', sans-serif"
-        },
-        "radius": {
-            "sm": "0.125rem",
-            "md": "0.25rem",
-            "lg": "0.5rem"
-        }
-    },
-    "warm": {
-        "name": "Warm/Friendly",
-        "description": "Warm colors, rounded corners, inviting",
-        "colors": {
-            "primary": "25 95% 53%",
-            "secondary": "340 75% 55%",
-            "accent": "45 100% 50%",
-            "background": "35 100% 98%",
-            "surface": "30 50% 96%",
-            "text": "20 20% 20%",
-            "text-muted": "20 10% 50%"
-        },
-        "fonts": {
-            "display": "'Nunito', 'Quicksand', sans-serif",
-            "text": "'Inter', 'Open Sans', sans-serif"
-        },
-        "radius": {
-            "sm": "0.5rem",
-            "md": "0.75rem",
-            "lg": "1rem"
-        }
-    },
-    "ecommerce": {
-        "name": "E-commerce/Product",
-        "description": "Product-focused, clear CTAs, conversion-optimized",
-        "colors": {
-            "primary": "142 71% 45%",
-            "secondary": "210 90% 56%",
-            "accent": "0 100% 60%",
-            "background": "0 0% 100%",
-            "surface": "0 0% 97%",
-            "text": "0 0% 10%",
-            "text-muted": "0 0% 45%"
-        },
-        "fonts": {
-            "display": "'Inter', 'Roboto', sans-serif",
-            "text": "'Inter', system-ui, sans-serif"
-        },
-        "radius": {
-            "sm": "0.25rem",
-            "md": "0.5rem",
-            "lg": "0.75rem"
-        }
-    },
-    "saas": {
-        "name": "SaaS/Dashboard",
-        "description": "Data-friendly, clean interfaces, organized",
-        "colors": {
-            "primary": "220 90% 56%",
-            "secondary": "260 60% 60%",
-            "accent": "142 71% 45%",
-            "background": "0 0% 98%",
-            "surface": "0 0% 100%",
-            "text": "0 0% 10%",
-            "text-muted": "0 0% 45%",
-            "success": "142 71% 45%",
-            "warning": "38 92% 50%",
-            "error": "0 84% 60%"
-        },
-        "fonts": {
-            "display": "'Inter', 'Roboto', system-ui, sans-serif",
-            "text": "'Inter', system-ui, sans-serif"
-        },
-        "radius": {
-            "sm": "0.25rem",
-            "md": "0.375rem",
-            "lg": "0.5rem"
-        }
-    },
-    "portfolio": {
-        "name": "Portfolio/Personal",
-        "description": "Personality-driven, unique layouts, showcase work",
-        "colors": {
-            "primary": "280 70% 55%",
-            "secondary": "340 60% 50%",
-            "accent": "180 60% 50%",
-            "background": "0 0% 100%",
-            "surface": "0 0% 98%",
-            "text": "0 0% 10%",
-            "text-muted": "0 0% 45%"
-        },
-        "fonts": {
-            "display": "'Playfair Display', 'Merriweather', serif",
-            "text": "'Inter', 'Lato', sans-serif"
-        },
-        "radius": {
-            "sm": "0.25rem",
-            "md": "0.5rem",
-            "lg": "1rem"
-        }
-    }
+def validate_hsl_color(hsl_string: str) -> bool:
+    """
+    Validate HSL color format to prevent injection.
+
+    Args:
+        hsl_string: HSL color in format "H S% L%" (e.g., "220 90% 56%")
+
+    Returns:
+        True if valid, raises ValueError otherwise.
+    """
+    pattern = r'^\d{1,3}\s+\d{1,3}%\s+\d{1,3}%$'
+    if not re.match(pattern, hsl_string):
+        raise ValueError(f"Invalid HSL format: '{hsl_string}'. Expected format: 'H S% L%'")
+
+    parts = hsl_string.replace('%', '').split()
+    h, s, l = int(parts[0]), int(parts[1]), int(parts[2])
+
+    if not (0 <= h <= 360):
+        raise ValueError(f"Hue value {h} out of range (0-360)")
+    if not (0 <= s <= 100):
+        raise ValueError(f"Saturation value {s} out of range (0-100)")
+    if not (0 <= l <= 100):
+        raise ValueError(f"Lightness value {l} out of range (0-100)")
+
+    return True
+
+
+def validate_theme_config(theme_config: Dict[str, Any]) -> bool:
+    """
+    Validate entire theme configuration.
+
+    Args:
+        theme_config: Theme configuration dictionary
+
+    Returns:
+        True if valid, raises ValueError otherwise.
+    """
+    required_keys = ["name", "description", "colors", "fonts", "radius"]
+    for key in required_keys:
+        if key not in theme_config:
+            raise ValueError(f"Missing required key in theme config: {key}")
+
+    # Validate colors
+    for color_name, color_value in theme_config["colors"].items():
+        try:
+            validate_hsl_color(color_value)
+        except ValueError as e:
+            raise ValueError(f"Invalid color '{color_name}': {e}")
+
+    return True
+
+
+def safe_write_file(file_path: Path, content: str, description: str) -> bool:
+    """
+    Safely write content to a file with error handling.
+
+    Args:
+        file_path: Path to write to
+        content: Content to write
+        description: Description for error messages
+
+    Returns:
+        True if successful, exits on failure.
+    """
+    try:
+        file_path.write_text(content)
+        print(f"✅ Created {description}")
+        return True
+    except PermissionError:
+        print(f"❌ Error: No write permission for {file_path}")
+        print(f"   Solution: Check file permissions or choose different output directory")
+        sys.exit(1)
+    except OSError as e:
+        print(f"❌ Error writing {description}: {e}")
+        print(f"   Solution: Check disk space and file system permissions")
+        sys.exit(1)
+
+
+def safe_create_directory(dir_path: Path) -> bool:
+    """
+    Safely create a directory with error handling.
+
+    Args:
+        dir_path: Path to create
+
+    Returns:
+        True if successful, exits on failure.
+    """
+    try:
+        dir_path.mkdir(parents=True, exist_ok=True)
+        return True
+    except PermissionError:
+        print(f"❌ Error: No permission to create directory {dir_path}")
+        print(f"   Solution: Check directory permissions or choose different location")
+        sys.exit(1)
+    except OSError as e:
+        print(f"❌ Error creating directory {dir_path}: {e}")
+        sys.exit(1)
+
+
+# Theme name mapping to JSON config files
+THEME_CONFIG_MAP = {
+    "modern": "modern-minimalist.json",
+    "corporate": "corporate-professional.json",
+    "creative": "creative-bold.json",
+    "dark": "dark-tech.json",
+    "warm": "warm-friendly.json",
+    "ecommerce": "ecommerce-product.json",
+    "saas": "saas-dashboard.json",
+    "portfolio": "portfolio-personal.json"
 }
+
+
+def get_config_dir() -> Path:
+    """Get the path to the theme-configs directory."""
+    script_dir = Path(__file__).parent
+    return script_dir.parent / "assets" / "theme-configs"
+
+
+def load_theme_config(theme_key: str) -> Dict[str, Any]:
+    """
+    Load theme configuration from JSON file.
+
+    Args:
+        theme_key: Theme identifier (e.g., "modern", "corporate")
+
+    Returns:
+        Theme configuration dictionary
+
+    Raises:
+        ValueError: If theme not found or config invalid
+    """
+    if theme_key not in THEME_CONFIG_MAP:
+        raise ValueError(f"Unknown theme: {theme_key}")
+
+    config_file = get_config_dir() / THEME_CONFIG_MAP[theme_key]
+
+    if not config_file.exists():
+        raise ValueError(f"Theme config file not found: {config_file}")
+
+    try:
+        with open(config_file, 'r') as f:
+            config = json.load(f)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON in theme config {config_file}: {e}")
+
+    # Transform JSON config to expected format
+    return transform_json_config(config)
+
+
+def transform_json_config(json_config: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Transform JSON config file format to internal format.
+
+    Args:
+        json_config: Raw JSON config from file
+
+    Returns:
+        Transformed config in expected format
+    """
+    return {
+        "name": json_config.get("name", "Unknown"),
+        "description": json_config.get("description", ""),
+        "colors": json_config.get("colors", {}),
+        "fonts": {
+            "display": json_config.get("typography", {}).get("display", {}).get("family", "sans-serif"),
+            "text": json_config.get("typography", {}).get("text", {}).get("family", "sans-serif")
+        },
+        "radius": json_config.get("borderRadius", {
+            "sm": "0.25rem",
+            "md": "0.5rem",
+            "lg": "0.75rem"
+        })
+    }
+
+
+def get_all_themes() -> Dict[str, Dict[str, Any]]:
+    """
+    Load all available themes.
+
+    Returns:
+        Dictionary of theme_key -> theme_config
+    """
+    themes = {}
+    for theme_key in THEME_CONFIG_MAP:
+        try:
+            themes[theme_key] = load_theme_config(theme_key)
+        except ValueError as e:
+            print(f"Warning: Could not load theme '{theme_key}': {e}")
+    return themes
+
+
+# Load themes at module level for backwards compatibility
+THEMES = get_all_themes()
 
 
 def generate_theme_css(theme_config: Dict[str, Any], dark_mode: bool = False) -> str:
@@ -482,6 +495,11 @@ def main():
         action="store_true",
         help="List available themes"
     )
+    parser.add_argument(
+        "--validate-only",
+        action="store_true",
+        help="Validate theme config without generating files"
+    )
 
     args = parser.parse_args()
 
@@ -500,38 +518,59 @@ def main():
         sys.exit(1)
 
     theme_config = THEMES[args.theme]
+
+    # Validate theme configuration
+    try:
+        validate_theme_config(theme_config)
+        if args.validate_only:
+            print(f"✅ Theme '{args.theme}' configuration is valid")
+            return
+    except ValueError as e:
+        print(f"❌ Error: Invalid theme configuration - {e}")
+        sys.exit(1)
+
     output_dir = Path(args.output)
 
-    # Create output directory
-    output_dir.mkdir(parents=True, exist_ok=True)
+    # Create output directory with error handling
+    safe_create_directory(output_dir)
 
     print(f"\n🎨 Generating {theme_config['name']} theme...")
 
-    # Generate theme.css
-    theme_css = generate_theme_css(theme_config, args.dark_mode)
-    (output_dir / "theme.css").write_text(theme_css)
-    print(f"✅ Created theme.css")
+    # Track generated files for potential rollback
+    generated_files = []
 
-    # Generate index.html
-    index_html = generate_html_template(args.theme)
-    (output_dir / "index.html").write_text(index_html)
-    print(f"✅ Created index.html")
+    try:
+        # Generate theme.css
+        theme_css = generate_theme_css(theme_config, args.dark_mode)
+        safe_write_file(output_dir / "theme.css", theme_css, "theme.css")
+        generated_files.append(output_dir / "theme.css")
 
-    # Generate README.md
-    readme = generate_readme(args.theme)
-    (output_dir / "README.md").write_text(readme)
-    print(f"✅ Created README.md")
+        # Generate index.html
+        index_html = generate_html_template(args.theme)
+        safe_write_file(output_dir / "index.html", index_html, "index.html")
+        generated_files.append(output_dir / "index.html")
 
-    # Generate theme-config.json
-    config_json = json.dumps(theme_config, indent=2)
-    (output_dir / "theme-config.json").write_text(config_json)
-    print(f"✅ Created theme-config.json")
+        # Generate README.md
+        readme = generate_readme(args.theme)
+        safe_write_file(output_dir / "README.md", readme, "README.md")
+        generated_files.append(output_dir / "README.md")
 
-    print(f"\n✨ Theme generated successfully in: {output_dir.absolute()}")
-    print(f"\n📝 Next steps:")
-    print(f"   1. Open {output_dir / 'index.html'} in your browser")
-    print(f"   2. Customize colors in theme.css")
-    print(f"   3. Build your pages using the component classes\n")
+        # Generate theme-config.json
+        config_json = json.dumps(theme_config, indent=2)
+        safe_write_file(output_dir / "theme-config.json", config_json, "theme-config.json")
+        generated_files.append(output_dir / "theme-config.json")
+
+        print(f"\n✨ Theme generated successfully in: {output_dir.absolute()}")
+        print(f"\n📝 Next steps:")
+        print(f"   1. Open {output_dir / 'index.html'} in your browser")
+        print(f"   2. Customize colors in theme.css")
+        print(f"   3. Build your pages using the component classes\n")
+
+    except Exception as e:
+        print(f"\n❌ Error during generation: {e}")
+        print(f"   Generated {len(generated_files)} files before failure.")
+        print(f"   You may need to clean up: {output_dir}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

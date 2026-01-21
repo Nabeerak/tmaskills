@@ -13,9 +13,85 @@ Usage:
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Optional
+
+
+def validate_hsl_color(hsl_string: str) -> bool:
+    """
+    Validate HSL color format to prevent injection.
+
+    Args:
+        hsl_string: HSL color in format "H S% L%" (e.g., "220 90% 56%")
+
+    Returns:
+        True if valid, raises ValueError otherwise.
+    """
+    pattern = r'^\d{1,3}\s+\d{1,3}%\s+\d{1,3}%$'
+    if not re.match(pattern, hsl_string):
+        raise ValueError(f"Invalid HSL format: '{hsl_string}'. Expected format: 'H S% L%'")
+
+    parts = hsl_string.replace('%', '').split()
+    h, s, l = int(parts[0]), int(parts[1]), int(parts[2])
+
+    if not (0 <= h <= 360):
+        raise ValueError(f"Hue value {h} out of range (0-360)")
+    if not (0 <= s <= 100):
+        raise ValueError(f"Saturation value {s} out of range (0-100)")
+    if not (0 <= l <= 100):
+        raise ValueError(f"Lightness value {l} out of range (0-100)")
+
+    return True
+
+
+def safe_write_file(file_path: Path, content: str, description: str) -> bool:
+    """
+    Safely write content to a file with error handling.
+
+    Args:
+        file_path: Path to write to
+        content: Content to write
+        description: Description for error messages
+
+    Returns:
+        True if successful, exits on failure.
+    """
+    try:
+        file_path.write_text(content)
+        print(f"✅ Created {description}")
+        return True
+    except PermissionError:
+        print(f"❌ Error: No write permission for {file_path}")
+        print(f"   Solution: Check file permissions or choose different output directory")
+        sys.exit(1)
+    except OSError as e:
+        print(f"❌ Error writing {description}: {e}")
+        print(f"   Solution: Check disk space and file system permissions")
+        sys.exit(1)
+
+
+def safe_create_directory(dir_path: Path) -> bool:
+    """
+    Safely create a directory with error handling.
+
+    Args:
+        dir_path: Path to create
+
+    Returns:
+        True if successful, exits on failure.
+    """
+    try:
+        dir_path.mkdir(parents=True, exist_ok=True)
+        return True
+    except PermissionError:
+        print(f"❌ Error: No permission to create directory {dir_path}")
+        print(f"   Solution: Check directory permissions or choose different location")
+        sys.exit(1)
+    except OSError as e:
+        print(f"❌ Error creating directory {dir_path}: {e}")
+        sys.exit(1)
 
 
 # Color presets based on theme types
@@ -423,9 +499,9 @@ def main():
         print("❌ Error: Saturation must be between 0 and 100")
         sys.exit(1)
 
-    # Create output directory
+    # Create output directory with error handling
     output_dir = Path(args.output)
-    output_dir.mkdir(parents=True, exist_ok=True)
+    safe_create_directory(output_dir)
 
     print(f"\n🎨 Generating {palette_name}...")
     print(f"   Hue: {hue}°, Saturation: {saturation}%")
@@ -433,6 +509,17 @@ def main():
     # Generate palettes
     light_palette = generate_semantic_colors(hue, saturation, dark_mode=False)
     dark_palette = generate_semantic_colors(hue, saturation, dark_mode=True) if args.dark_mode else None
+
+    # Validate generated colors
+    try:
+        for name, color in light_palette.items():
+            validate_hsl_color(color)
+        if dark_palette:
+            for name, color in dark_palette.items():
+                validate_hsl_color(color)
+    except ValueError as e:
+        print(f"❌ Error: Generated invalid color - {e}")
+        sys.exit(1)
 
     # Check accessibility
     bg_lightness = 100
@@ -444,35 +531,38 @@ def main():
     print(f"   WCAG AA: {'✓ Pass' if contrast_check['aa'] else '✗ Fail'}")
     print(f"   WCAG AAA: {'✓ Pass' if contrast_check['aaa'] else '✗ Fail'}")
 
-    # Generate files
-    # 1. palette.json
-    palette_json = {
-        "name": palette_name,
-        "hue": hue,
-        "saturation": saturation,
-        "light": light_palette
-    }
-    if dark_palette:
-        palette_json["dark"] = dark_palette
+    # Generate files with error handling
+    try:
+        # 1. palette.json
+        palette_json = {
+            "name": palette_name,
+            "hue": hue,
+            "saturation": saturation,
+            "light": light_palette
+        }
+        if dark_palette:
+            palette_json["dark"] = dark_palette
 
-    (output_dir / "palette.json").write_text(json.dumps(palette_json, indent=2))
-    print(f"\n✅ Created palette.json")
+        safe_write_file(output_dir / "palette.json", json.dumps(palette_json, indent=2), "palette.json")
 
-    # 2. palette.css
-    palette_css = generate_css(light_palette, dark_palette)
-    (output_dir / "palette.css").write_text(palette_css)
-    print(f"✅ Created palette.css")
+        # 2. palette.css
+        palette_css = generate_css(light_palette, dark_palette)
+        safe_write_file(output_dir / "palette.css", palette_css, "palette.css")
 
-    # 3. preview.html
-    preview_html = generate_preview_html(light_palette, palette_name, dark_palette)
-    (output_dir / "preview.html").write_text(preview_html)
-    print(f"✅ Created preview.html")
+        # 3. preview.html
+        preview_html = generate_preview_html(light_palette, palette_name, dark_palette)
+        safe_write_file(output_dir / "preview.html", preview_html, "preview.html")
 
-    print(f"\n✨ Palette generated successfully in: {output_dir.absolute()}")
-    print(f"\n📝 Next steps:")
-    print(f"   1. Open preview.html to see your palette")
-    print(f"   2. Copy palette.css to your project")
-    print(f"   3. Customize colors as needed\n")
+        print(f"\n✨ Palette generated successfully in: {output_dir.absolute()}")
+        print(f"\n📝 Next steps:")
+        print(f"   1. Open preview.html to see your palette")
+        print(f"   2. Copy palette.css to your project")
+        print(f"   3. Customize colors as needed\n")
+
+    except Exception as e:
+        print(f"\n❌ Error during generation: {e}")
+        print(f"   You may need to clean up: {output_dir}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
